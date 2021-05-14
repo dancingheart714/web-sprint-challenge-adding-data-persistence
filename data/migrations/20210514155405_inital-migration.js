@@ -1,5 +1,5 @@
-exports.up = function (knex) {
-  await knex.schema
+exports.up = function (knex, Promise) {
+  return knex.schema
     .createTable('projects', (tbl) => {
       tbl.increments('project_id');
       tbl.string('project_name').notNullable();
@@ -9,7 +9,7 @@ exports.up = function (knex) {
     .createTable('resources', (tbl) => {
       tbl.increments('resource_id');
       tbl.string('resource_name').notNullable().unique();
-      tble.string('resource_description');
+      tbl.string('resource_description');
     })
     .createTable('tasks', (tbl) => {
       tbl.increments('task_id');
@@ -34,7 +34,7 @@ exports.up = function (knex) {
         .references('project_id')
         .inTable('projects')
         .onDelete('RESTRICT');
-      tble
+      tbl
         .integer('resource_id')
         .unsigned()
         .notNullable()
@@ -44,10 +44,10 @@ exports.up = function (knex) {
     });
 };
 
-exports.down = async function (knex) {
-  await knex.schema
-    .dropTableIfExists('project_resources')
-    .dropTableIfExists('tasks')
+exports.down = function (knex, Promise) {
+  return knex.schema
+    .dropTableIfExists('projects')
     .dropTableIfExists('resources')
-    .dropTableIfExists('projects');
+    .dropTableIfExists('tasks')
+    .dropTableIfExists('project_resources');
 };

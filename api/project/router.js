@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const Project = require('./model');
+const Projects = require('./model');
 
 router.get('/:id', (req, res, next) => {
-  Project.getById(req.params.id)
+  Projects.getById(req.params.id)
     .then((project) => {
       res.status(200).json(project);
     })
@@ -10,7 +10,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-  Project.getAll()
+  Projects.getAll()
     .then((project) => {
       res.status(200).json(project);
     })
@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  Project.createProject(req.body)
+  Projects.createNewProject(req.body)
     .then((newProject) => {
       res.status(201).json(newProject);
     })

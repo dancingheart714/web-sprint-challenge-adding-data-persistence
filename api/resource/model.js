@@ -1,13 +1,22 @@
-function getById(id) {
-  return Promise.resolve('awesome by id');
-}
+const db = require('../../data/dbConfig');
+
+//GET/api/resources
+//Example of response body: [{"resource_id":1,"resource_name":"foo","resource_description":null}]
 
 function getAll() {
-  return Promise.resolve('awesome all');
+  return db('resources');
 }
 
-function createNewResource() {
-  return Promise.resolve('awesome create');
+//POST/api/resources
+//Example of response body: {"resource_id":1,"resource_name":"foo","resource_description":null}//
+
+function getById(id) {
+  return db('resources').where('resource_id', id).first();
+}
+
+async function createNewResource() {
+  const [id] = await db('resources').insert(resource);
+  return getById(id);
 }
 
 module.exports = {

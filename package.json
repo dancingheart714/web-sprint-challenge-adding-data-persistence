@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent",
     "server": "nodemon index.js",
-    "start": "node index",
+    "start": "node index.js",
     "migrate": "knex migrate: latest",
     "rollback": "knex migrate: rollback",
     "seed": "knex seed:run",
