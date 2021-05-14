@@ -20,7 +20,7 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Resources.createNewResource(req.body)
     .then((newResource) => {
-      res.status(200).json(newResource);
+      res.status(201).json(newResource);
     })
     .catch(next);
 });
